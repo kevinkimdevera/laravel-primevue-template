@@ -1,0 +1,27 @@
+import api from '@/api'
+
+const state = {
+  // stateName: null
+}
+
+const getters = {
+  // STATE_NAME: state => state.stateName
+}
+
+const mutations = {
+  // SET_STATE_NAME: (state, payload) => state.stateName = payload
+}
+
+const actions = {
+  // ACTION_NAME: ({ commit }, payload) => {
+  //   commit('SET_STATE_NAME', payload)
+  // }
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
+}

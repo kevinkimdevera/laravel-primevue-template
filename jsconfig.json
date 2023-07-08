@@ -1,0 +1,11 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "vue"
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "allowJs": true,
+  }
+}
