@@ -102,12 +102,6 @@
         <router-view />
       </div>
     </div>
-
-    <!-- CONFIRMATION DIALOG COMPONENT -->
-    <p-confirm-dialog />
-
-    <!-- TOAST COMPONENT -->
-    <p-toast position="bottom-right" />
   </div>
 </template>
 
@@ -151,7 +145,7 @@ export default {
 
   watch: {
     $route () {
-      this.sidebarVisible = false
+      this.sidebar = false
     }
   },
 

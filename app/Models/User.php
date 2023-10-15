@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-  use HasApiTokens, HasFactory, Notifiable;
+  use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
 
   /**
    * The attributes that are mass assignable.
@@ -93,7 +95,16 @@ class User extends Authenticatable
     });
   }
 
-  // Check Password
+  /**
+   * Check Password
+   *
+   * Check if the given password matches the hashed password in the database.
+   *
+   * @param string $password
+   *
+   * @return bool
+   *
+   */
   public function checkPassword ($password) {
     return Hash::check($password, $this->password);
   }

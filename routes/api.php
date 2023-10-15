@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,15 @@ use App\Http\Controllers\Api\Auth\LoginController;
 Route::name('api.')->group(function () {
 
   // LOGIN
-  Route::prefix('auth')->name('auth.')->group(function () {
+  Route::middleware('guest')->prefix('auth')->name('auth.')->group(function () {
     // Login Route
     Route::post('login', LoginController::class)->name('login');
+
+    // Forgot Password Route
+    Route::post('password/forgot', ForgotPasswordController::class)->name('password.forgot');
+
+    // Reset Password Route
+    Route::post('password/reset', ResetPasswordController::class)->name('password.reset');
   });
 
   // AUTHENTICATED ROUTES

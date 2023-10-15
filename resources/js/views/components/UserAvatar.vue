@@ -12,7 +12,6 @@
 export default {
   props: {
     avatar: {
-      type: Object,
       required: true
     },
     size: {

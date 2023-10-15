@@ -1,41 +1,25 @@
 <template>
-  <form
-    class="auth-form"
-    @submit.prevent="attemptLogin"
-    style="width: 30rem;"
-  >
-    <div
-      class="surface-card py-6 px-8"
-      style="border-radius: 53px"
-    >
-      <div class="text-center mb-5">
-        <img
-          src="/images/logo.png"
-          alt="Sakai logo"
-          class="mb-3 w-6rem flex-shrink-0"
-        >
-
-        <div class="text-900 text-2xl font-medium mb-3">
-          Sign in to continue
-        </div>
+  <form @submit.prevent="attemptLogin" style="width: 500px">
+    <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
+      <div class="mb-4">
+        <div class="text-900 text-xl font-bold mb-2">Log in</div>
+        <span class="text-600 font-medium">Please enter your details</span>
       </div>
 
-      <div>
+      <div class="flex flex-column">
         <div class="field mb-3">
-          <label
-            for="username"
-            :class="{ 'p-error' : hasUsernameError }"
-            class="block font-medium"
-          >
-            Username
-          </label>
-          <p-input-text
-            id="username"
-            type="text"
-            class="w-full"
-            :class="{ 'p-invalid' : hasUsernameError }"
-            v-model="form.username"
-          />
+          <div class="p-input-icon-left w-full">
+            <i class="pi pi-user" />
+            <p-input-text
+              id="username"
+              type="text"
+              class="w-full"
+              :class="{ 'p-invalid' : hasUsernameError }"
+              placeholder="Username / Email"
+              v-model="form.username"
+            />
+          </div>
+
           <small
             v-if="hasUsernameError"
             class="p-error"
@@ -45,20 +29,19 @@
         </div>
 
         <div class="field mb-3">
-          <label
-            for="password"
-            :class="{ 'p-error' : hasPasswordError }"
-            class="block font-medium"
-          >
-            Password
-          </label>
-          <p-input-text
-            id="password"
-            type="password"
-            class="w-full"
-            :class="{ 'p-invalid' : hasPasswordError }"
-            v-model="form.password"
-          />
+          <div class="p-input-icon-left w-full">
+            <i class="pi pi-lock" />
+            <p-input-text
+              id="password"
+              type="password"
+              class="w-full"
+              :class="{ 'p-invalid' : hasPasswordError }"
+              v-model="form.password"
+              placeholder="Password"
+            />
+          </div>
+
+
           <small
             v-if="hasPasswordError"
             class="p-error"
@@ -70,9 +53,12 @@
         <p-button
           :loading="loading"
           label="Login"
-          class="mt-3 w-full"
+          class="my-3 w-full"
           type="submit"
         />
+
+        <router-link :to="{ name: 'auth.password.forgot' }" class="text-600 hover:text-primary-500">Forgot Password?</router-link>
+
       </div>
     </div>
   </form>

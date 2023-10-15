@@ -17,7 +17,7 @@ const routes = [
   {
     // MAIN LAYOUT
     path: '/',
-    component: MainLayout,
+    component: () => import('@/views/layouts/MainLayout.vue'),
     meta: {
       auth: true,
     },
@@ -27,7 +27,7 @@ const routes = [
         path: '',
         alias: 'home',
         name: 'home',
-        component: HomePage
+        component: () => import('@/views/pages/Home.vue')
       },
 
       // =================================
@@ -38,14 +38,27 @@ const routes = [
   {
     // AUTH LAYOUT
     path: '/auth',
-    component: AuthLayout,
+    component:() => import('@/views/layouts/AuthLayout.vue'),
     children: [
       // LOGIN PAGE
       {
         path: 'login',
         name: 'auth.login',
-        component: LoginPage
-      }
+        component: () => import('@/views/pages/auth/Login.vue')
+      },
+      // FORGOT PASSWORD PAGE
+      {
+        path: 'forgot-password',
+        name: 'auth.password.forgot',
+        component: () => import('@/views/pages/auth/ForgotPassword.vue')
+      },
+      // RESET PASSWORD PAGE
+      {
+        path: 'password/reset/:token',
+        name: 'auth.password.reset',
+        component: () => import('@/views/pages/auth/ResetPassword.vue'),
+        props: true
+      },
     ]
   }
 ]

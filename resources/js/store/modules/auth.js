@@ -60,6 +60,20 @@ const actions = {
     return await api.post('/api/auth/login', credentials)
   },
 
+  FORGOT_PASSWORD: async ({ dispatch }, credentials) => {
+    // Get CSRF token
+    await api.get('/sanctum/csrf-cookie')
+
+    return await api.post('/api/auth/password/forgot', credentials)
+  },
+
+  RESET_PASSWORD: async ({ dispatch }, credentials) => {
+    // Get CSRF token
+    await api.get('/sanctum/csrf-cookie')
+
+    return await api.post('/api/auth/password/reset', credentials)
+  },
+
   // Set the Authenticated User
   LOGIN: ({ commit }, user) => {
     commit('SET_USER', user)
