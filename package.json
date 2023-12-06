@@ -9,7 +9,7 @@
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.4",
         "sass": "^1.62.0",
-        "vite": "^4.0.0"
+        "vite": "^4.4.12"
     },
     "dependencies": {
         "chart.js": "^4.2.1",
