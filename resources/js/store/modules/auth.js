@@ -60,6 +60,23 @@ const actions = {
     return await api.post('/api/auth/login', credentials)
   },
 
+  // Attempt Register to API
+  ATTEMPT_REGISTER: async ({ dispatch }, userData) => {
+    // Get CSRF token
+    await api.get('/sanctum/csrf-cookie')
+
+    return await api.post('/api/auth/register', userData)
+  },
+
+  // Attempt Verify Email to API
+  VERIFY_EMAIL: async ({ dispatch }, verificationData) => {
+    // Get CSRF token
+    await api.get('/sanctum/csrf-cookie')
+
+    return await api.post('/api/auth/verify', verificationData)
+  },
+
+  // Attempt Forgot Password to API
   FORGOT_PASSWORD: async ({ dispatch }, credentials) => {
     // Get CSRF token
     await api.get('/sanctum/csrf-cookie')
@@ -67,6 +84,7 @@ const actions = {
     return await api.post('/api/auth/password/forgot', credentials)
   },
 
+  // Attempt Reset Password to API
   RESET_PASSWORD: async ({ dispatch }, credentials) => {
     // Get CSRF token
     await api.get('/sanctum/csrf-cookie')

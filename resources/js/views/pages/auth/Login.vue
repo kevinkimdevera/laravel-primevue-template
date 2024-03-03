@@ -3,7 +3,9 @@
     <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
       <div class="mb-4">
         <div class="text-900 text-xl font-bold mb-2">Log in</div>
-        <span class="text-600 font-medium">Please enter your details</span>
+        <span class="text-600 font-medium">
+          Please enter your credentials to continue
+        </span>
       </div>
 
       <div class="flex flex-column">
@@ -49,6 +51,10 @@
           </small>
         </div>
 
+        <div class="flex justify-content-end">
+          <router-link :to="{ name: 'auth.password.forgot' }" class="text-600 hover:text-primary-500">Forgot Password?</router-link>
+        </div>
+
         <p-button
           :loading="loading"
           label="Login"
@@ -56,8 +62,9 @@
           type="submit"
         />
 
-        <router-link :to="{ name: 'auth.password.forgot' }" class="text-600 hover:text-primary-500">Forgot Password?</router-link>
-
+        <p>
+          Need an account? <router-link class="text-600 font-bold hover:text-primary-500" :to="{ name: 'auth.register' }">Register</router-link>
+        </p>
       </div>
     </div>
   </form>

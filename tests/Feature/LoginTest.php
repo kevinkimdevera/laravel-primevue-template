@@ -20,7 +20,7 @@ class LoginTest extends TestCase
 
   public function test_login_failed_with_incorrect_credentials()
   {
-    $user = User::factory()->user()->create();
+    $user = User::factory()->user()->verified()->create();
 
     $response = $this->postJson(route('api.auth.login'), [
       'username' => $user->email,
@@ -37,7 +37,7 @@ class LoginTest extends TestCase
 
   public function test_login_success_with_correct_credentials_using_email()
   {
-    $user = User::factory()->user()->create([
+    $user = User::factory()->user()->verified()->create([
       'password' => Hash::make('correct-password')
     ]);
 
@@ -54,7 +54,7 @@ class LoginTest extends TestCase
 
   public function test_login_success_with_correct_credentials_using_username()
   {
-    $user = User::factory()->user()->create([
+    $user = User::factory()->user()->verified()->create([
       'password' => Hash::make('correct-password')
     ]);
 

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\Auth\ResetPasswordRequest;
 
 class ResetPasswordController extends Controller
 {
@@ -30,8 +30,10 @@ class ResetPasswordController extends Controller
         }
       );
 
-      return $status === Password::PASSWORD_RESET
-        ? response()->json(['message' => __($status)], 200)
-        : response()->json(['message' => __($status)], 500);
+      $status_code = $status === Password::PASSWORD_RESET
+        ? 200
+        : 500;
+
+      return response()->json(['message' => __($status)], $status_code);
     }
 }

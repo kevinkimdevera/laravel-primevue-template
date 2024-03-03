@@ -4,11 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Support\Str;
+use App\Models\Logs\LoginAttempt;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -29,6 +30,8 @@ class User extends Authenticatable
       'username',
       'email',
       'password',
+      'verification_code',
+      'email_verified_at',
   ];
 
   /**
@@ -87,6 +90,23 @@ class User extends Authenticatable
     ];
   }
 
+  // Masked Email
+  public function getMaskedEmailAttribute () : string {
+    $email = $this->email;
+    $parts = explode('@', $email);
+    $username = $parts[0];
+    $domain = $parts[1];
+
+    $username = substr($username, 0, 1) . '*****' . substr($username, -1);
+
+    return "$username@$domain";
+  }
+
+  // User is verified
+  public function getIsVerifiedAttribute () : bool {
+    return $this->email_verified_at !== null;
+  }
+
   // Check Username or Email
   public function scopeOfUsername ($query, $username) {
     return $query->where(function ($q) use ($username) {
@@ -107,6 +127,32 @@ class User extends Authenticatable
    */
   public function checkPassword ($password) {
     return Hash::check($password, $this->password);
+  }
+
+  /**
+   * Check Verification Code
+   *
+   * Check if the given verification code matches the verification code in the database.
+   *
+   * @param string $code
+   *
+   * @return bool
+   */
+  public function checkVerificationCode ($code) {
+    return $this->verification_code === $code;
+  }
+
+  /**
+   * Mark Email as Verified
+   *
+   * Mark the user's email as verified.
+   *
+   * @return bool
+   */
+  public function markEmailAsVerified () {
+    return $this->update([
+      'email_verified_at' => now(),
+    ]);
   }
 
   // User Role

@@ -30,6 +30,7 @@ import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
 import InputMask from 'primevue/inputmask'
 import InputNumber from 'primevue/inputnumber'
+import InputOtp from 'primevue/inputotp'
 import InputSwitch from 'primevue/inputswitch'
 import InputPassword from 'primevue/password'
 import Menu from 'primevue/menu'
@@ -106,9 +107,9 @@ app.component('p-file-upload', FileUpload)
 app.component('p-icon-field', IconField)
 app.component('p-input-icon', InputIcon)
 app.component('p-input-text', InputText)
-app.component('p-input-text', InputText)
 app.component('p-input-mask', InputMask)
 app.component('p-input-number', InputNumber)
+app.component('p-input-otp', InputOtp)
 app.component('p-input-password', InputPassword)
 app.component('p-menu', Menu)
 app.component('p-message', Message)

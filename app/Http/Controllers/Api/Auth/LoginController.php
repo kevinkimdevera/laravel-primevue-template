@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\User;
-use App\Http\Requests\LoginRequest;
-use App\Http\Controllers\Controller;
 use App\Models\Logs\LoginAttempt;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 
 class LoginController extends Controller
 {

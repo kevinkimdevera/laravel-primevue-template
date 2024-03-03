@@ -85,7 +85,7 @@ class ResetPasswordTest extends TestCase
 
   // Test Success Reset Password Request
   public function test_success_reset_password () {
-    $user = User::factory()->user()->create();
+    $user = User::factory()->user()->verified()->create();
 
     $token = Password::createToken($user);
 
