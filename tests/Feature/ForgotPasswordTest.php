@@ -31,7 +31,7 @@ class ForgotPasswordTest extends TestCase
 
     public function test_success_forgot_password_request()
     {
-      $user = User::factory()->user()->create();
+      $user = User::factory()->user()->verified()->create();
 
       $response = $this->postJson(route('api.auth.password.forgot'), [
         'email' => $user->email

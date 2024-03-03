@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Preview of Mails
+Route::prefix('preview-email')->group(function () {
+  Route::get('verify', function () {
+    $user = User::find(1);
+
+    return (new VerifyEmail($user->verification_code))->toMail($user);
+  });
+});
+
 // SPA Route
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
+
+

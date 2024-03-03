@@ -19,9 +19,10 @@ class AuthResource extends JsonResource
 
       return [
         'name' => $user->name,
-        'email' => $user->email,
+        'email' => $user->is_verified ? $user->email : $user->masked_email,
         'avatar' => $user->avatar,
         'role' => RoleResource::make($user->role),
+        'is_verified' => $user->is_verified,
       ];
     }
 }

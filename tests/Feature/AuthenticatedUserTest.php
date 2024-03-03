@@ -19,7 +19,7 @@ class AuthenticatedUserTest extends TestCase
 
   public function test_authenticated_user_can_get_user_data()
   {
-    $user = User::factory()->user()->create();
+    $user = User::factory()->user()->verified()->create();
     $this->actingAs($user);
 
     $response = $this->getJson(route('api.auth.user.show'));

@@ -14,8 +14,8 @@ import HomePage from '@/views/pages/Home.vue'
 
 // ROUTES
 const routes = [
+  // AUTHENTICATED ROUTES
   {
-    // MAIN LAYOUT
     path: '/',
     component: () => import('@/views/layouts/MainLayout.vue'),
     meta: {
@@ -35,8 +35,26 @@ const routes = [
       // =================================
     ]
   },
+
+  // AUTHENTICATED AUTH ROUTES
   {
-    // AUTH LAYOUT
+    path: '/auth',
+    component:() => import('@/views/layouts/AuthLayout.vue'),
+    meta: {
+      auth: true,
+    },
+    children:[
+      // EMAIL VERIFICATION PAGE
+      {
+        path: 'verification',
+        name: 'auth.verify',
+        component: () => import('@/views/pages/auth/Verify.vue')
+      },
+    ]
+  },
+
+  // GUEST AUTH ROUTES
+  {
     path: '/auth',
     component:() => import('@/views/layouts/AuthLayout.vue'),
     children: [
@@ -50,6 +68,12 @@ const routes = [
         path: 'login',
         name: 'auth.login',
         component: () => import('@/views/pages/auth/Login.vue')
+      },
+      // REGISTER PAGE
+      {
+        path: 'register',
+        name: 'auth.register',
+        component: () => import('@/views/pages/auth/Register.vue')
       },
       // FORGOT PASSWORD PAGE
       {

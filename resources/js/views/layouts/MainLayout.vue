@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-wrapper">
+  <div class="layout-wrapper" v-if="!userLoading">
     <div class="layout-topbar">
       <!-- SIDEBAR TOGGLE BUTTON -->
       <button
@@ -227,12 +227,25 @@ export default {
         .then((response) => {
           // If success, login user
           const user = response?.data
-          this._login(user)
+
+          this.login(user)
         })
         .catch((e) => {
           // If error, logout user
           this.logout()
         })
+    },
+
+    login (user) {
+      // Login user
+      if (!user?.is_verified) {
+        // Redirect to verification page
+        this.$router.replace({
+          name: 'auth.verify'
+        })
+      }
+
+      this._login(user)
     },
 
     // Logout user

@@ -19,13 +19,27 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+      $last_name = $this->faker->lastName();
+      $first_name = $this->faker->firstName();
+
+      // Username from first name and last name firstname.lastname
+      $username = Str::of($first_name)
+        ->lower()
+        ->append('.')
+        ->append(Str::of($last_name)->lower());
+
+      $email = Str::of($username)
+        ->append('@')
+        ->append($this->faker->safeEmailDomain());
+
       return [
-        'last_name' => fake()->lastName(),
-        'first_name' => fake()->firstName(),
-        'username' => fake()->unique()->userName(),
+        'last_name' => $first_name,
+        'first_name' => $last_name,
+        'username' => $username,
         'role_id' => Role::USER,
-        'email' => fake()->unique()->safeEmail(),
-        'password' => Hash::make('password'),
+        'email' => $email,
+        'password' => Hash::make('@Password_123'),
+        'verification_code' => rand(100000, 999999),
       ];
     }
 
@@ -44,10 +58,20 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
+    public function unverified()
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+        return $this->state([
+          'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the model's email address should be verified.
+     */
+    public function verified()
+    {
+        return $this->state([
+            'email_verified_at' => now(),
         ]);
     }
 }

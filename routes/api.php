@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,9 @@ Route::name('api.')->group(function () {
     // Login Route
     Route::post('login', LoginController::class)->name('login');
 
+    // Register Route
+    Route::post('register', RegisterController::class)->name('register');
+
     // Forgot Password Route
     Route::post('password/forgot', ForgotPasswordController::class)->name('password.forgot');
 
@@ -39,6 +44,9 @@ Route::name('api.')->group(function () {
     Route::prefix('auth')->name('auth.')->group(function () {
       // Get User Info
       Route::get('user', [ UserController::class, 'show' ])->name('user.show');
+
+      // Verify Email
+      Route::post('verify', [ VerificationController::class, 'verify' ])->name('email.verify');
     });
 
     // Place all authenticated routes here

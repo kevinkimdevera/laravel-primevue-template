@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
-use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
 
 class ForgotPasswordController extends Controller
 {
@@ -20,8 +20,10 @@ class ForgotPasswordController extends Controller
       ]);
 
       // Return Response
-      return $status === Password::RESET_LINK_SENT
-        ? response()->json(['message' => __($status)], 200)
-        : response()->json(['message' => __($status)], 500);
+      $status_code = $status === Password::RESET_LINK_SENT
+        ? 200
+        : 500;
+
+      return response()->json(['message' => __($status)], $status_code);
     }
 }
