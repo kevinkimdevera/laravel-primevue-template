@@ -25,6 +25,8 @@ import Divider from 'primevue/divider'
 import DynamicDialog from 'primevue/dynamicdialog'
 import Editor from 'primevue/editor'
 import FileUpload from 'primevue/fileupload'
+import IconField from 'primevue/iconfield'
+import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
 import InputMask from 'primevue/inputmask'
 import InputNumber from 'primevue/inputnumber'
@@ -65,9 +67,6 @@ import router from '@/router'
 // State Management
 import store from '@/store'
 
-// Custom CSS
-import '../sass/app.scss'
-
 // App Component
 import App from '@/App.vue'
 
@@ -104,6 +103,9 @@ app.component('p-divider', Divider)
 app.component('p-dynamic-dialog', DynamicDialog)
 app.component('p-editor', Editor)
 app.component('p-file-upload', FileUpload)
+app.component('p-icon-field', IconField)
+app.component('p-input-icon', InputIcon)
+app.component('p-input-text', InputText)
 app.component('p-input-text', InputText)
 app.component('p-input-mask', InputMask)
 app.component('p-input-number', InputNumber)

@@ -40,6 +40,11 @@ const routes = [
     path: '/auth',
     component:() => import('@/views/layouts/AuthLayout.vue'),
     children: [
+      // Redirect '/' to '/auth/login'
+      {
+        path: '',
+        redirect: { name: 'auth.login' }
+      },
       // LOGIN PAGE
       {
         path: 'login',

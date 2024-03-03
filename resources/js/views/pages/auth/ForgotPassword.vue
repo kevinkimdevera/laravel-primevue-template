@@ -8,8 +8,8 @@
 
       <div class="flex flex-column">
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-envelope" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-envelope"></p-input-icon>
             <p-input-text
               id="username"
               type="text"
@@ -18,7 +18,7 @@
               placeholder="Email"
               v-model="form.email"
             />
-          </div>
+          </p-icon-field>
 
           <small
             v-if="hasEmailError"

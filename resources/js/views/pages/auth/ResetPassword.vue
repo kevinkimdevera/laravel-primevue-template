@@ -8,16 +8,17 @@
 
       <div class="flex flex-column">
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-envelope" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-envelope"></p-input-icon>
             <p-input-text
+              id="username"
               type="text"
               class="w-full"
               :class="{ 'p-invalid' : hasEmailError }"
               placeholder="Email"
               v-model="form.email"
             />
-          </div>
+          </p-icon-field>
 
           <small
             v-if="hasEmailError"
@@ -28,16 +29,17 @@
         </div>
 
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-lock" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-lock"></p-input-icon>
             <p-input-text
+              id="new-password"
               type="password"
               class="w-full"
               :class="{ 'p-invalid' : hasPasswordError }"
               placeholder="New Password"
               v-model="form.password"
             />
-          </div>
+          </p-icon-field>
 
           <small
             v-if="hasPasswordError"
@@ -48,16 +50,17 @@
         </div>
 
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-lock" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-lock"></p-input-icon>
             <p-input-text
+              id="confirm-password"
               type="password"
               class="w-full"
               :class="{ 'p-invalid' : hasPasswordConfirmationError }"
-              placeholder="Confirm Password"
+              placeholder="Confirm New Password"
               v-model="form.password_confirmation"
             />
-          </div>
+          </p-icon-field>
 
           <small
             v-if="hasPasswordConfirmationError"

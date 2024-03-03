@@ -6,7 +6,8 @@
 
     <title>{{ config('app.name') }}</title>
 
-    {{-- Compiled app.js --}}
+    {{-- Compiled Assets --}}
+    @vite(['resources/sass/app.scss'])
     @vite(['resources/js/app.js'])
   </head>
   <body>

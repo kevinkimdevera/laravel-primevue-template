@@ -8,8 +8,8 @@
 
       <div class="flex flex-column">
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-user" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-user"></p-input-icon>
             <p-input-text
               id="username"
               type="text"
@@ -18,7 +18,7 @@
               placeholder="Username / Email"
               v-model="form.username"
             />
-          </div>
+          </p-icon-field>
 
           <small
             v-if="hasUsernameError"
@@ -29,8 +29,8 @@
         </div>
 
         <div class="field mb-3">
-          <div class="p-input-icon-left w-full">
-            <i class="pi pi-lock" />
+          <p-icon-field icon-position="left">
+            <p-input-icon class="pi pi-lock"></p-input-icon>
             <p-input-text
               id="password"
               type="password"
@@ -39,8 +39,7 @@
               v-model="form.password"
               placeholder="Password"
             />
-          </div>
-
+          </p-icon-field>
 
           <small
             v-if="hasPasswordError"

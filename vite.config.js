@@ -7,7 +7,7 @@ export default defineConfig({
     // Laravel Vite Plugin
     laravel({
       input: [
-        'resources/css/app.scss',
+        'resources/sass/app.scss',
         'resources/js/app.js'
       ],
       refresh: true,
